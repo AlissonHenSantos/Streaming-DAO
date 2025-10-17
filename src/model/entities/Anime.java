@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Anime {
 
 	private Integer id;
-	private String name;
+	private String name;	
 	private String description;
 	private List<Category> categories;
 	
