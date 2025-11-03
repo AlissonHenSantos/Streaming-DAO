@@ -2,6 +2,7 @@ package model.data;
 
 import model.data.mysql.MySQLAnimeDAO;
 import model.data.mysql.MySQLCategoryDAO;
+import model.data.mysql.MySQLEpisodeDAO;
 import model.data.mysql.MySQLUserDAO;
 
 public class DAOFactory {
@@ -30,6 +31,10 @@ public class DAOFactory {
 	}
 	public static MySQLAnimeDAO getAnimeDAO() {
 		return new MySQLAnimeDAO();
+	}
+	
+	public static MySQLEpisodeDAO getEpisodeDAO() {
+		return new MySQLEpisodeDAO();
 	}
 	
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.ModelException;
+import model.data.DAOUtils;
 import model.data.UserDAO;
 import model.data.mysql.utils.MySQLConnectionFactory;
 import model.entities.User;
@@ -32,6 +33,9 @@ public class MySQLUserDAO implements UserDAO {
 			
 			} catch (SQLException sqle) {
 			throw new ModelException("Erro ao atualizar Usuário" + sqle);
+		}finally {
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 	}
@@ -53,6 +57,9 @@ public class MySQLUserDAO implements UserDAO {
 			
 			} catch (SQLException sqle) {
 			throw new ModelException("Erro ao inserir Usuário" + sqle);
+		}finally {
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 	}
@@ -71,6 +78,9 @@ public class MySQLUserDAO implements UserDAO {
 			pst.execute();
 		} catch (SQLException sqle) {
 			throw new ModelException("Erro ao excluir usuário " + sqle);
+		}finally {
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 	}
@@ -99,6 +109,10 @@ public class MySQLUserDAO implements UserDAO {
 			}
 		} catch (SQLException sqle) {
 			throw new ModelException("Erro ao obter usuário por id" + sqle);
+		} finally {
+			DAOUtils.close(rs);
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 		return user;
@@ -126,6 +140,10 @@ public class MySQLUserDAO implements UserDAO {
 			}
 		} catch (SQLException sqle) {
 			throw new ModelException("Erro ao obter usuário por id" + sqle);
+		} finally {
+			DAOUtils.close(rs);
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 		return users;
@@ -151,10 +169,14 @@ public class MySQLUserDAO implements UserDAO {
 				String password = rs.getString("password");
 				
 				user = new User(id, name, email, password);
-
+				System.out.println(user);
 			}
 		} catch (SQLException sqle) {
 			throw new ModelException("Erro ao obter usuário por id" + sqle);
+		} finally {
+			DAOUtils.close(rs);
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 		return user;

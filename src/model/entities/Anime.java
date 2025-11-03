@@ -76,6 +76,15 @@ public class Anime {
 		
 		categories.add(category);
 	}
+
+	public void validate() {
+		
+		if (name == null || name.isBlank())
+			throw new IllegalArgumentException("O nome  do anime não pode ser vazio");
+		
+		if (description == null || description.isBlank())
+			throw new IllegalArgumentException("A descrição do anime não pode ser vazio");
+	}
 	
 	
 }

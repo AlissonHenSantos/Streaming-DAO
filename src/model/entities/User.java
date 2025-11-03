@@ -2,13 +2,13 @@ package model.entities;
 
 import java.util.Objects;
 
+
 public class User {
 	
 	private Integer id;
 	private String name;
 	private String email;
 	private String password;
-	
 	
 	public User() {
 		

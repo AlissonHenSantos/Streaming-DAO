@@ -30,6 +30,9 @@ public class MySQLCategoryDAO implements GenericDAO<Category> {
 			
 		}catch (SQLException sqle) {
 			throw new ModelException("Erro ao inserir categoria " + sqle);
+		}finally {
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 	}
@@ -48,6 +51,9 @@ public class MySQLCategoryDAO implements GenericDAO<Category> {
 			
 		}catch (SQLException sqle) {
 			throw new ModelException("Erro ao inserir categoria " + sqle);
+		}finally {
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 	}
@@ -68,6 +74,9 @@ public class MySQLCategoryDAO implements GenericDAO<Category> {
 			
 		} catch (SQLException sqle) {
 			throw new ModelException("Erro ao excluir categoria " + sqle);
+		}finally {
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 	}
@@ -93,6 +102,10 @@ public class MySQLCategoryDAO implements GenericDAO<Category> {
 			
 		} catch (SQLException sqle) {
 			throw new ModelException("Erro ao buscar categoria por id " + sqle);
+		}finally {
+			DAOUtils.close(rs);
+			DAOUtils.close(con);
+			DAOUtils.close(pst);
 		}
 		
 		

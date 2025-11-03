@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import model.ModelException;
 
 public class MySQLConnectionFactory {
-	private static final String DRIVER_NAME = "com.mysql.cj.jdbc.driver";
 	private static final String DB_URL = "jdbc:mysql://127.0.0.1/streaming";
 	private static final String USER = "root";
 	private static final String PASSWORD = "";
