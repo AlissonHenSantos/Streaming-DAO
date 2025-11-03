@@ -66,8 +66,7 @@ public class Anime {
 
 	@Override
 	public String toString() {
-		return "Anime [id=" + id + ", name=" + name + ", description=" + description + ", categories=" + categories
-				+ "]";
+		return getName();
 	}
 	
 	public void addCategory(Category category) {

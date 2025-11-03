@@ -3,6 +3,7 @@ package model.entities;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
 public class Episode {
 	private Integer id;
 	private String title;
@@ -20,6 +21,17 @@ public class Episode {
 		this.releaseDate = releaseDate;
 		this.number = number;
 		this.anime = anime;
+	}
+
+	public void validate(){
+		if(title == null || title.isBlank())
+			throw new IllegalArgumentException("Digite um titulo válido");
+
+		if(number == null || number < 1)
+			throw new IllegalArgumentException("Digite um número válido");
+		if(releaseDate.compareTo(LocalDate.now()) > 0)
+			throw new IllegalArgumentException("Data de lançamento inválida"); 
+		
 	}
 
 	public Integer getId() {

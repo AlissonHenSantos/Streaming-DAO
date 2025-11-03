@@ -24,7 +24,7 @@ public class MySQLEpisodeDAO implements EpisodeDAO{
 		PreparedStatement pst = null;
 		try {
 			con = MySQLConnectionFactory.getConnection();
-			String query = "UPDATE episode title = ?, releaseDate = ?, number = ?, Anime = ? WHERE id = ?";
+			String query = "UPDATE episode SET title = ?, releaseDate = ?, number = ?, Anime = ? WHERE id = ?";
 			pst = con.prepareStatement(query);
 			pst.setString(1, data.getTitle());
 			pst.setDate(2, DateConverter.convertDateToDB(data.getReleaseDate()));
@@ -47,12 +47,13 @@ public class MySQLEpisodeDAO implements EpisodeDAO{
 		PreparedStatement pst = null;
 		try {
 			con = MySQLConnectionFactory.getConnection();
-			String query = "INSERT INTO episode (title, releaseDate, number, Anime) VALUES ( ?, now(), ?, ? )";
+			String query = "INSERT INTO episode (title, releaseDate, number, Anime) VALUES ( ?, ?, ?, ? )";
 			pst = con.prepareStatement(query);
 			System.out.println(data.getNumber());
 			pst.setString(1, data.getTitle());
-			pst.setInt(2, data.getNumber());
-			pst.setInt(3, data.getAnime().getId());
+			pst.setDate(2, DateConverter.convertDateToDB(data.getReleaseDate()));
+			pst.setInt(3, data.getNumber());
+			pst.setInt(4, data.getAnime().getId());
 			pst.execute();
 			
 		} catch (SQLException sqle) {

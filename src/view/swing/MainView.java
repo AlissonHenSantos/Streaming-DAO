@@ -15,12 +15,13 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import view.swing.anime.AnimeListView;
+import view.swing.episode.EpisodeListView;
 
 public class MainView extends JFrame {
     private static final long serialVersionUID = 1L;
 
 	public MainView() {
-        setTitle("Facebook CRUD - Swing");
+        setTitle("Streaming CRUD");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -36,7 +37,7 @@ public class MainView extends JFrame {
       
         JMenu episodeMenu = new JMenu("Episódios");
         JMenuItem episodeListItem = new JMenuItem("Listar Episódios");
-        
+        episodeListItem.addActionListener(e -> new EpisodeListView(this).setVisible(true));
         episodeMenu.add(episodeListItem);
         menuBar.add(episodeMenu);
 
