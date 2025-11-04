@@ -24,7 +24,7 @@ import controller.EpisodeController;
 import model.entities.Episode;
 
 public class EpisodeListView extends JDialog implements IEpisodeListView {
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private EpisodeController controller;
     private final EpisodeTableModel tableModel = new EpisodeTableModel();
     private final JTable table = new JTable(tableModel);
@@ -146,7 +146,7 @@ public class EpisodeListView extends JDialog implements IEpisodeListView {
             switch (col) {
                 case 0: return p.getTitle();
                 case 1: return p.getNumber();
-                case 2: return p.getReleaseDate().format(DATE_FORMATTER);
+                case 2: return p.getReleaseDate().format(dateFormatter);
                 case 3: return p.getAnime().getName();
                 default: return null;
             }

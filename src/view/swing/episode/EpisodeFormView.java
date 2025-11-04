@@ -36,7 +36,7 @@ public class EpisodeFormView extends JDialog implements IEpisodeFormView {
     private final EpisodeListView parent;
     private Episode episode;
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public EpisodeFormView(EpisodeListView parent, Episode episode, EpisodeController controller) {
         super(parent, true);
@@ -47,7 +47,7 @@ public class EpisodeFormView extends JDialog implements IEpisodeFormView {
         this.episode = episode;
         this.isNew = (episode == null);
 
-        setTitle(isNew ? "Novo Episode" : "Editar Episode");
+        setTitle(isNew ? "Novo Episódio" : "Editar Episódio");
         setSize(600, 500);
         setLocationRelativeTo(parent);
         setLayout(new GridBagLayout());
@@ -116,7 +116,7 @@ public class EpisodeFormView extends JDialog implements IEpisodeFormView {
         episode.setNumber(Integer.parseInt(numberArea.getText()));
         String dateText = releaseDateField.getText().trim();
         try {
-            episode.setReleaseDate(LocalDate.parse(dateText, DATE_FORMATTER));
+            episode.setReleaseDate(LocalDate.parse(dateText, dateFormatter));
         } catch (Exception ex) {
             throw new IllegalArgumentException("Data inválida. Use o formato dd-MM-yyyy");
         }
@@ -128,7 +128,7 @@ public class EpisodeFormView extends JDialog implements IEpisodeFormView {
         titleArea.setText(episode.getTitle());
         numberArea.setText(String.valueOf(episode.getNumber()));
         if (episode.getReleaseDate() != null) {
-            releaseDateField.setText(episode.getReleaseDate().format(DATE_FORMATTER));
+            releaseDateField.setText(episode.getReleaseDate().format(dateFormatter));
         } else {
             releaseDateField.setValue(null);
         }

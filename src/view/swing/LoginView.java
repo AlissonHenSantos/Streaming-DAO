@@ -24,7 +24,8 @@ public class LoginView extends JDialog {
 	private boolean authenticated = false;
     private final JTextField emailField = new JTextField(20);
     private final JPasswordField passwordField = new JPasswordField(20);
-    
+    private final JButton registerButton = new JButton("Registrar");
+    private  JButton recoverButton = new JButton("Recuperar senha");
     private AuthController authController;
 
     public LoginView() {
@@ -47,12 +48,16 @@ public class LoginView extends JDialog {
         form.add(new JLabel("Senha:"), gbc);
         gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST;
         form.add(passwordField, gbc);
+        gbc.gridx = 1; gbc.gridy = 4; gbc.anchor = GridBagConstraints.CENTER;
+        form.add(recoverButton, gbc);
 
         JPanel buttons = new JPanel();
         JButton loginBtn = new JButton("Entrar");
         JButton cancelBtn = new JButton("Cancelar");
         buttons.add(loginBtn);
         buttons.add(cancelBtn);
+        buttons.add(registerButton);
+        
 
         loginBtn.addActionListener(e -> {
             String email = emailField.getText();
@@ -68,14 +73,23 @@ public class LoginView extends JDialog {
 		                JOptionPane.showMessageDialog(this, "Email ou senha inválidos.", "Erro", JOptionPane.ERROR_MESSAGE);
 		            }
 			} catch (ModelException e1) {
-				e1.printStackTrace();
+				JOptionPane.showMessageDialog(this, e1.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
 			}
             
         });
 
+        registerButton.addActionListener( e -> {
+            new Register().setVisible(true);
+        });
+
         cancelBtn.addActionListener(e -> {
             authenticated = false;
+            this.setVisible(false);
             dispose();
+        });
+        recoverButton.addActionListener(e -> {
+            RecoverPassword rp = new RecoverPassword();
+            rp.setVisible(true);
         });
 
         add(form, BorderLayout.CENTER);
